@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Pencil, Check, Fuel } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -45,13 +45,6 @@ export const VehiclePresetSelector = ({
   const selectedPreset = presets.find(
     (p) => Math.abs(p.consumption - value) < 0.5
   );
-
-  // When preset is selected, update fuel type to match preset
-  useEffect(() => {
-    if (selectedPreset && !isCustom && onFuelTypeChange) {
-      onFuelTypeChange(selectedPreset.fuelType);
-    }
-  }, [selectedPreset, isCustom, onFuelTypeChange]);
 
   const handlePresetSelect = (preset: VehiclePreset) => {
     onChange(preset.consumption);
