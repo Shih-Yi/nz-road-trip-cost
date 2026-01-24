@@ -27,7 +27,6 @@ import {
   calculateCosts,
   formatDistance,
   type CalculatorInput,
-  type CarFuelType,
 } from "@/lib/calculator";
 import {
   getDieselCampervanPresets,
@@ -395,34 +394,6 @@ export const Calculator = () => {
                 </div>
               </div>
 
-              {/* Fuel Type */}
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-slate-600">
-                  Fuel Type
-                </Label>
-                <div className="flex gap-2">
-                  {(["petrol", "diesel", "hybrid"] as CarFuelType[]).map(
-                    (type) => (
-                      <Button
-                        key={type}
-                        variant={
-                          inputs.carFuelType === type ? "default" : "outline"
-                        }
-                        size="sm"
-                        className={`flex-1 rounded-full capitalize ${
-                          inputs.carFuelType === type
-                            ? "bg-blue-600 hover:bg-blue-700"
-                            : ""
-                        }`}
-                        onClick={() => updateInput("carFuelType", type)}
-                      >
-                        {type}
-                      </Button>
-                    )
-                  )}
-                </div>
-              </div>
-
               {/* Vehicle Type & Consumption Selector */}
               <VehiclePresetSelector
                 presets={CAR_PRESETS}
@@ -430,6 +401,11 @@ export const Calculator = () => {
                 onChange={(value) => updateInput("carConsumption", value)}
                 label="Vehicle Type & Fuel Consumption"
                 accentColor="blue"
+                showFuelTypeInCustom={true}
+                fuelType={inputs.carFuelType === "hybrid" ? "petrol" : inputs.carFuelType}
+                onFuelTypeChange={(type) => updateInput("carFuelType", type)}
+                petrolPrice={inputs.petrolPrice}
+                dieselPrice={inputs.dieselPrice}
               />
 
               {/* Accommodation */}

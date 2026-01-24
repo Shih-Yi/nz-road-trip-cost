@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Pencil, Check } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Pencil, Check, Fuel } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -18,6 +18,12 @@ interface VehiclePresetSelectorProps {
   onChange: (value: number) => void;
   label: string;
   accentColor?: string;
+  // Car-specific props for fuel type selection in custom mode
+  showFuelTypeInCustom?: boolean;
+  fuelType?: "petrol" | "diesel";
+  onFuelTypeChange?: (type: "petrol" | "diesel") => void;
+  petrolPrice?: number;
+  dieselPrice?: number;
 }
 
 export const VehiclePresetSelector = ({
@@ -26,6 +32,11 @@ export const VehiclePresetSelector = ({
   onChange,
   label,
   accentColor = "blue",
+  showFuelTypeInCustom = false,
+  fuelType = "petrol",
+  onFuelTypeChange,
+  petrolPrice = 2.65,
+  dieselPrice = 2.1,
 }: VehiclePresetSelectorProps) => {
   const [isCustom, setIsCustom] = useState(false);
   const [showCustomInput, setShowCustomInput] = useState(false);
@@ -35,10 +46,21 @@ export const VehiclePresetSelector = ({
     (p) => Math.abs(p.consumption - value) < 0.5
   );
 
+  // When preset is selected, update fuel type to match preset
+  useEffect(() => {
+    if (selectedPreset && !isCustom && onFuelTypeChange) {
+      onFuelTypeChange(selectedPreset.fuelType);
+    }
+  }, [selectedPreset, isCustom, onFuelTypeChange]);
+
   const handlePresetSelect = (preset: VehiclePreset) => {
     onChange(preset.consumption);
     setIsCustom(false);
     setShowCustomInput(false);
+    // Auto-set fuel type based on preset
+    if (onFuelTypeChange) {
+      onFuelTypeChange(preset.fuelType);
+    }
   };
 
   const handleCustomSelect = () => {
@@ -130,27 +152,78 @@ export const VehiclePresetSelector = ({
 
       {/* Selected Info or Custom Input */}
       {showCustomInput || isCustom ? (
-        <div className="space-y-2 rounded-2xl bg-slate-50 p-3">
-          <p className="text-xs font-medium text-slate-500">
-            Enter your vehicle&apos;s fuel consumption:
-          </p>
-          <div className="relative">
-            <Input
-              type="number"
-              value={value}
-              onChange={(e) => {
-                onChange(Number(e.target.value));
-                setIsCustom(true);
-              }}
-              className="h-11 rounded-full border-slate-200 pr-20 text-center text-lg font-semibold"
-              min={3}
-              max={25}
-              step={0.5}
-              autoFocus
-            />
-            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-slate-400">
-              L/100km
-            </span>
+        <div className="space-y-3 rounded-2xl bg-slate-50 p-3">
+          {/* Fuel Type Selector - Only in Custom mode for cars */}
+          {showFuelTypeInCustom && onFuelTypeChange && (
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-xs font-medium text-slate-500">
+                <Fuel className="h-3.5 w-3.5" />
+                <span>Fuel Type:</span>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => onFuelTypeChange("petrol")}
+                  className={cn(
+                    "flex flex-1 items-center justify-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition-all",
+                    fuelType === "petrol"
+                      ? "bg-emerald-600 text-white ring-2 ring-emerald-600 ring-offset-1"
+                      : "bg-white text-slate-600 hover:bg-slate-100"
+                  )}
+                >
+                  <span className={cn(
+                    "h-2.5 w-2.5 rounded-full",
+                    fuelType === "petrol" ? "bg-white" : "bg-emerald-500"
+                  )} />
+                  <span>Petrol</span>
+                  <span className="text-xs opacity-75">${petrolPrice}</span>
+                </button>
+                <button
+                  onClick={() => onFuelTypeChange("diesel")}
+                  className={cn(
+                    "flex flex-1 items-center justify-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition-all",
+                    fuelType === "diesel"
+                      ? "bg-amber-600 text-white ring-2 ring-amber-600 ring-offset-1"
+                      : "bg-white text-slate-600 hover:bg-slate-100"
+                  )}
+                >
+                  <span className={cn(
+                    "h-2.5 w-2.5 rounded-full",
+                    fuelType === "diesel" ? "bg-white" : "bg-amber-500"
+                  )} />
+                  <span>Diesel</span>
+                  <span className="text-xs opacity-75">${dieselPrice}+RUC</span>
+                </button>
+              </div>
+              {fuelType === "diesel" && (
+                <p className="text-xs text-amber-600">
+                  Diesel vehicles pay Road User Charges (RUC)
+                </p>
+              )}
+            </div>
+          )}
+
+          <div className="space-y-2">
+            <p className="text-xs font-medium text-slate-500">
+              Enter fuel consumption:
+            </p>
+            <div className="relative">
+              <Input
+                type="number"
+                value={value}
+                onChange={(e) => {
+                  onChange(Number(e.target.value));
+                  setIsCustom(true);
+                }}
+                className="h-11 rounded-full border-slate-200 pr-20 text-center text-lg font-semibold"
+                min={3}
+                max={25}
+                step={0.5}
+                autoFocus
+              />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-slate-400">
+                L/100km
+              </span>
+            </div>
           </div>
         </div>
       ) : selectedPreset ? (
