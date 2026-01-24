@@ -1,0 +1,171 @@
+"use client";
+
+import { useState } from "react";
+import { Pencil, Check } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import type { VehiclePreset } from "@/lib/vehicle-presets";
+
+interface VehiclePresetSelectorProps {
+  presets: VehiclePreset[];
+  value: number;
+  onChange: (value: number) => void;
+  label: string;
+  accentColor?: string;
+}
+
+export const VehiclePresetSelector = ({
+  presets,
+  value,
+  onChange,
+  label,
+  accentColor = "blue",
+}: VehiclePresetSelectorProps) => {
+  const [isCustom, setIsCustom] = useState(false);
+  const [showCustomInput, setShowCustomInput] = useState(false);
+
+  // Find matching preset
+  const selectedPreset = presets.find(
+    (p) => Math.abs(p.consumption - value) < 0.5
+  );
+
+  const handlePresetSelect = (preset: VehiclePreset) => {
+    onChange(preset.consumption);
+    setIsCustom(false);
+    setShowCustomInput(false);
+  };
+
+  const handleCustomSelect = () => {
+    setIsCustom(true);
+    setShowCustomInput(true);
+  };
+
+  const colorClasses = {
+    blue: {
+      pill: "bg-blue-100 text-blue-700 hover:bg-blue-200",
+      pillActive: "bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2",
+      badge: "bg-blue-50 text-blue-600",
+    },
+    slate: {
+      pill: "bg-slate-100 text-slate-700 hover:bg-slate-200",
+      pillActive: "bg-slate-700 text-white ring-2 ring-slate-700 ring-offset-2",
+      badge: "bg-slate-100 text-slate-600",
+    },
+    emerald: {
+      pill: "bg-emerald-100 text-emerald-700 hover:bg-emerald-200",
+      pillActive: "bg-emerald-600 text-white ring-2 ring-emerald-600 ring-offset-2",
+      badge: "bg-emerald-50 text-emerald-600",
+    },
+  };
+
+  const colors = colorClasses[accentColor as keyof typeof colorClasses] || colorClasses.blue;
+
+  return (
+    <div className="space-y-3">
+      <Label className="text-sm font-medium text-slate-600">{label}</Label>
+
+      {/* Smart Pills */}
+      <div className="flex flex-wrap gap-2">
+        {presets.map((preset) => {
+          const isSelected = selectedPreset?.id === preset.id && !isCustom;
+          return (
+            <Tooltip key={preset.id}>
+              <TooltipTrigger asChild>
+                <button
+                  onClick={() => handlePresetSelect(preset)}
+                  className={cn(
+                    "relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition-all duration-200",
+                    isSelected ? colors.pillActive : colors.pill
+                  )}
+                >
+                  {isSelected && (
+                    <Check className="h-3.5 w-3.5" />
+                  )}
+                  <span>{preset.name}</span>
+                  <span
+                    className={cn(
+                      "rounded-full px-1.5 py-0.5 text-xs font-semibold",
+                      isSelected ? "bg-white/20 text-white" : colors.badge
+                    )}
+                  >
+                    {preset.consumption}L
+                  </span>
+                </button>
+              </TooltipTrigger>
+              <TooltipContent
+                side="bottom"
+                className="rounded-xl border-0 bg-slate-900 text-white"
+              >
+                <div className="space-y-1 p-1">
+                  <p className="font-semibold">{preset.name}</p>
+                  <p className="text-xs text-slate-300">{preset.examples}</p>
+                  <p className="text-xs">
+                    Fuel: <span className="font-medium">{preset.consumptionRange}/100km</span>
+                  </p>
+                </div>
+              </TooltipContent>
+            </Tooltip>
+          );
+        })}
+
+        {/* Custom Pill */}
+        <button
+          onClick={handleCustomSelect}
+          className={cn(
+            "flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition-all duration-200",
+            isCustom ? colors.pillActive : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+          )}
+        >
+          {isCustom && <Check className="h-3.5 w-3.5" />}
+          <Pencil className="h-3.5 w-3.5" />
+          <span>Custom</span>
+        </button>
+      </div>
+
+      {/* Selected Info or Custom Input */}
+      {showCustomInput || isCustom ? (
+        <div className="space-y-2 rounded-2xl bg-slate-50 p-3">
+          <p className="text-xs font-medium text-slate-500">
+            Enter your vehicle&apos;s fuel consumption:
+          </p>
+          <div className="relative">
+            <Input
+              type="number"
+              value={value}
+              onChange={(e) => {
+                onChange(Number(e.target.value));
+                setIsCustom(true);
+              }}
+              className="h-11 rounded-full border-slate-200 pr-20 text-center text-lg font-semibold"
+              min={3}
+              max={25}
+              step={0.5}
+              autoFocus
+            />
+            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-slate-400">
+              L/100km
+            </span>
+          </div>
+        </div>
+      ) : selectedPreset ? (
+        <div className="flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-3">
+          <div>
+            <p className="text-xs text-slate-500">{selectedPreset.examples}</p>
+            <p className="text-sm font-medium text-slate-700">
+              Est. {selectedPreset.consumptionRange}/100km
+            </p>
+          </div>
+          <div className={cn("rounded-full px-3 py-1.5 text-lg font-bold", colors.badge)}>
+            {value} L
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+};
