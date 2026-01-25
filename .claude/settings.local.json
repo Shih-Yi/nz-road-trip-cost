@@ -11,7 +11,10 @@
       "Bash(git commit:*)",
       "Bash(timeout 10 bun run dev:*)",
       "WebFetch(domain:www.mbie.govt.nz)",
-      "Bash(node scripts/get-fuel-price.js:*)"
+      "Bash(node scripts/get-fuel-price.js:*)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)",
+      "Bash(git push)"
     ]
   }
 }
