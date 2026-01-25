@@ -48,7 +48,5 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add data/fuel-prices.json
           git commit -m "chore: update fuel prices $(date -u +%Y-%m-%d)"
-          git checkout -- . || true
-          git pull --rebase origin main
           git push
 # Trigger update
