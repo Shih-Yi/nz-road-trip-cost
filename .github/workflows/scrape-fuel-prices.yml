@@ -1,0 +1,47 @@
+name: Scrape NZ Fuel Prices
+
+on:
+  # Run every Monday at 2:00 AM NZT (Sunday 1:00 PM UTC)
+  schedule:
+    - cron: '0 13 * * 0'
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run fuel price scraper
+        run: bun run scripts/get-fuel-price.js
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet data/fuel-prices.json; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/fuel-prices.json
+          git commit -m "chore: update fuel prices $(date -u +%Y-%m-%d)"
+          git push

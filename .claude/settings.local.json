@@ -8,7 +8,10 @@
       "Bash(git add:*)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nSetup Wanderlust Pastel design system and dependencies\n\nAdd shadcn/ui, Tailwind config with rose-50/orange-500 theme, Plus Jakarta Sans font, and project metadata for VanMath NZ calculator.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd shadcn/ui components\n\nInclude slider, card, button, input, label, tooltip, and popover components for calculator UI.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(timeout 10 bun run dev:*)",
+      "WebFetch(domain:www.mbie.govt.nz)",
+      "Bash(node scripts/get-fuel-price.js:*)"
     ]
   }
 }
