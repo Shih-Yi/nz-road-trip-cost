@@ -10,6 +10,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { DEFAULTS } from "@/lib/calculator";
 import type { VehiclePreset } from "@/lib/vehicle-presets";
 
 interface VehiclePresetSelectorProps {
@@ -39,8 +40,8 @@ export const VehiclePresetSelector = ({
   showFuelTypeSelector = false,
   fuelType = "petrol",
   onFuelTypeChange,
-  petrolPrice = 2.53,
-  dieselPrice = 1.88,
+  petrolPrice = DEFAULTS.petrolPrice,
+  dieselPrice = DEFAULTS.dieselPrice,
   dieselCompatiblePresets = [],
   petrolCompatiblePresets = [],
 }: VehiclePresetSelectorProps) => {

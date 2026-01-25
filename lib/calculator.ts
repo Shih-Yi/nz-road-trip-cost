@@ -1,14 +1,31 @@
 import { z } from "zod";
+import fuelPricesData from "@/data/fuel-prices.json";
 
 // Fuel type for car rental
 export type CarFuelType = "petrol" | "diesel" | "hybrid";
 
+// Get latest fuel prices from MBIE data (auto-updated weekly)
+const getLatestFuelPrices = () => {
+  if (fuelPricesData.length === 0) {
+    // Fallback if no data
+    return { petrol: 2.53, diesel: 1.88 };
+  }
+  // Get the last entry (most recent)
+  const latest = fuelPricesData[fuelPricesData.length - 1];
+  return {
+    petrol: latest.petrol,
+    diesel: latest.diesel,
+  };
+};
+
+const latestPrices = getLatestFuelPrices();
+
 // Default NZ fuel and rental data
-// Fuel prices updated from MBIE weekly data (2026-01-16)
+// Fuel prices auto-loaded from data/fuel-prices.json (MBIE weekly data)
 export const DEFAULTS = {
-  // Fuel prices (NZD per litre)
-  dieselPrice: 1.88,
-  petrolPrice: 2.53,
+  // Fuel prices (NZD per litre) - auto-updated from MBIE
+  dieselPrice: latestPrices.diesel,
+  petrolPrice: latestPrices.petrol,
 
   // Fuel consumption (L per 100km)
   dieselConsumption: 10, // Typical for campervan
