@@ -45,3 +45,4 @@ jobs:
           git add data/fuel-prices.json
           git commit -m "chore: update fuel prices $(date -u +%Y-%m-%d)"
           git push
+# Trigger update
