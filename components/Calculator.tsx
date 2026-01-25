@@ -401,12 +401,55 @@ export const Calculator = () => {
                 onChange={(value) => updateInput("carConsumption", value)}
                 label="Vehicle Type & Fuel Consumption"
                 accentColor="blue"
-                showFuelTypeInCustom={true}
+                showFuelTypeSelector={true}
                 fuelType={inputs.carFuelType === "hybrid" ? "petrol" : inputs.carFuelType}
                 onFuelTypeChange={(type) => updateInput("carFuelType", type)}
                 petrolPrice={inputs.petrolPrice}
                 dieselPrice={inputs.dieselPrice}
+                dieselCompatiblePresets={["large-suv"]}
+                petrolCompatiblePresets={["economy", "compact-suv", "hybrid"]}
               />
+
+              {/* RUC Rate - Only for diesel cars */}
+              {inputs.carFuelType === "diesel" && (
+                <div className="space-y-2 rounded-2xl bg-amber-50 p-4">
+                  <Label className="flex items-center gap-2 text-sm font-semibold text-amber-700">
+                    <AlertTriangle className="h-4 w-4" />
+                    Diesel Tax (RUC)
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Info className="h-4 w-4 cursor-help text-amber-500" />
+                      </TooltipTrigger>
+                      <TooltipContent className="max-w-xs rounded-2xl">
+                        <p className="text-sm">
+                          <strong>Road User Charges (RUC)</strong> apply to diesel
+                          vehicles in NZ. Car rental companies often charge{" "}
+                          <strong>$0.08-$0.09/km</strong>.
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </Label>
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-amber-600">
+                      $
+                    </span>
+                    <Input
+                      type="number"
+                      value={inputs.carRucRate}
+                      onChange={(e) =>
+                        updateInput("carRucRate", Number(e.target.value))
+                      }
+                      className="h-12 rounded-full border-amber-200 bg-white pl-8 text-lg font-semibold text-amber-700"
+                      min={0}
+                      max={0.5}
+                      step={0.01}
+                    />
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-amber-500">
+                      /km
+                    </span>
+                  </div>
+                </div>
+              )}
 
               {/* Accommodation */}
               <div className="space-y-3 rounded-2xl bg-purple-50 p-4">

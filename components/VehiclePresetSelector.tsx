@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Pencil, Check, Fuel } from "lucide-react";
+import { useState, useRef } from "react";
+import { Pencil, Check, Fuel, Lock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -18,12 +18,16 @@ interface VehiclePresetSelectorProps {
   onChange: (value: number) => void;
   label: string;
   accentColor?: string;
-  // Car-specific props for fuel type selection in custom mode
-  showFuelTypeInCustom?: boolean;
+  // Car-specific props for fuel type selection
+  showFuelTypeSelector?: boolean;
   fuelType?: "petrol" | "diesel";
   onFuelTypeChange?: (type: "petrol" | "diesel") => void;
   petrolPrice?: number;
   dieselPrice?: number;
+  // Preset IDs that can use diesel
+  dieselCompatiblePresets?: string[];
+  // Preset IDs that can use petrol
+  petrolCompatiblePresets?: string[];
 }
 
 export const VehiclePresetSelector = ({
@@ -32,33 +36,64 @@ export const VehiclePresetSelector = ({
   onChange,
   label,
   accentColor = "blue",
-  showFuelTypeInCustom = false,
+  showFuelTypeSelector = false,
   fuelType = "petrol",
   onFuelTypeChange,
   petrolPrice = 2.65,
   dieselPrice = 2.1,
+  dieselCompatiblePresets = [],
+  petrolCompatiblePresets = [],
 }: VehiclePresetSelectorProps) => {
   const [isCustom, setIsCustom] = useState(false);
   const [showCustomInput, setShowCustomInput] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Find matching preset
   const selectedPreset = presets.find(
     (p) => Math.abs(p.consumption - value) < 0.5
   );
 
+  // Determine availability
+  // If we are in custom mode, everything is allowed.
+  // If a preset is selected, check the lists.
+  // If lists are empty (and not custom), default to allowing? 
+  // Actually, for "Car Rental", we will pass specific lists.
+  // For safety, if a list is not provided/empty, maybe we shouldn't lock? 
+  // But here we want strict locking.
+  // Let's rely on the passed props.
+  const isPetrolAllowed = isCustom || (selectedPreset && petrolCompatiblePresets.includes(selectedPreset.id));
+  const isDieselAllowed = isCustom || (selectedPreset && dieselCompatiblePresets.includes(selectedPreset.id));
+
   const handlePresetSelect = (preset: VehiclePreset) => {
     onChange(preset.consumption);
     setIsCustom(false);
     setShowCustomInput(false);
-    // Auto-set fuel type based on preset
+    
+    // Auto-switch fuel type if current one is not allowed for this new preset
     if (onFuelTypeChange) {
-      onFuelTypeChange(preset.fuelType);
+      const presetSupportsPetrol = petrolCompatiblePresets.includes(preset.id);
+      const presetSupportsDiesel = dieselCompatiblePresets.includes(preset.id);
+
+      if (presetSupportsPetrol && !presetSupportsDiesel) {
+        onFuelTypeChange("petrol");
+      } else if (!presetSupportsPetrol && presetSupportsDiesel) {
+        onFuelTypeChange("diesel");
+      }
+      // If both supported, keep current (or default to petrol if current invalid?)
+      // If current is 'diesel' but new only supports 'petrol' -> switch to petrol (handled above)
+      // If current is 'petrol' but new only supports 'diesel' -> switch to diesel (handled above)
     }
   };
 
   const handleCustomSelect = () => {
     setIsCustom(true);
     setShowCustomInput(true);
+    // Custom allows everything, so no need to force switch, but user can now click any fuel
+  };
+
+  const handleFuelTypeChange = (type: "petrol" | "diesel") => {
+    if (!onFuelTypeChange) return;
+    onFuelTypeChange(type);
   };
 
   const colorClasses = {
@@ -143,83 +178,105 @@ export const VehiclePresetSelector = ({
         </button>
       </div>
 
-      {/* Selected Info or Custom Input */}
-      {showCustomInput || isCustom ? (
-        <div className="space-y-3 rounded-2xl bg-slate-50 p-3">
-          {/* Fuel Type Selector - Only in Custom mode for cars */}
-          {showFuelTypeInCustom && onFuelTypeChange && (
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-xs font-medium text-slate-500">
-                <Fuel className="h-3.5 w-3.5" />
-                <span>Fuel Type:</span>
-              </div>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => onFuelTypeChange("petrol")}
-                  className={cn(
-                    "flex flex-1 items-center justify-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition-all",
-                    fuelType === "petrol"
-                      ? "bg-emerald-600 text-white ring-2 ring-emerald-600 ring-offset-1"
-                      : "bg-white text-slate-600 hover:bg-slate-100"
-                  )}
-                >
-                  <span className={cn(
-                    "h-2.5 w-2.5 rounded-full",
-                    fuelType === "petrol" ? "bg-white" : "bg-emerald-500"
-                  )} />
-                  <span>Petrol</span>
-                  <span className="text-xs opacity-75">${petrolPrice}</span>
-                </button>
-                <button
-                  onClick={() => onFuelTypeChange("diesel")}
-                  className={cn(
-                    "flex flex-1 items-center justify-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition-all",
-                    fuelType === "diesel"
-                      ? "bg-amber-600 text-white ring-2 ring-amber-600 ring-offset-1"
-                      : "bg-white text-slate-600 hover:bg-slate-100"
-                  )}
-                >
-                  <span className={cn(
-                    "h-2.5 w-2.5 rounded-full",
-                    fuelType === "diesel" ? "bg-white" : "bg-amber-500"
-                  )} />
-                  <span>Diesel</span>
-                  <span className="text-xs opacity-75">${dieselPrice}+RUC</span>
-                </button>
-              </div>
-              {fuelType === "diesel" && (
-                <p className="text-xs text-amber-600">
-                  Diesel vehicles pay Road User Charges (RUC)
-                </p>
-              )}
-            </div>
-          )}
+      {/* Fuel Type Selector - Always visible when showFuelTypeSelector is true */}
+      {showFuelTypeSelector && onFuelTypeChange && (
+        <div className="space-y-2 rounded-2xl bg-slate-50 p-3">
+          <div className="flex items-center gap-2 text-xs font-medium text-slate-500">
+            <Fuel className="h-3.5 w-3.5" />
+            <span>Fuel Type:</span>
+          </div>
 
-          <div className="space-y-2">
-            <p className="text-xs font-medium text-slate-500">
-              Enter fuel consumption:
+          <div className="flex gap-2">
+            {/* Petrol Button */}
+            {isPetrolAllowed ? (
+              <button
+                onClick={() => handleFuelTypeChange("petrol")}
+                className={cn(
+                  "flex flex-1 items-center justify-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition-all",
+                  fuelType === "petrol"
+                    ? "bg-emerald-600 text-white ring-2 ring-emerald-600 ring-offset-1"
+                    : "bg-white text-slate-600 hover:bg-slate-100"
+                )}
+              >
+                <span className={cn(
+                  "h-2.5 w-2.5 rounded-full",
+                  fuelType === "petrol" ? "bg-white" : "bg-emerald-500"
+                )} />
+                <span>Petrol</span>
+                <span className="text-xs opacity-75">${petrolPrice}</span>
+              </button>
+            ) : (
+              <div className="flex flex-1 cursor-not-allowed items-center justify-center gap-2 rounded-full bg-slate-100 px-3 py-2 text-sm font-medium text-slate-400">
+                <Lock className="h-3.5 w-3.5" />
+                <span>Petrol</span>
+                <span className="text-xs opacity-50">(${petrolPrice})</span>
+              </div>
+            )}
+
+            {/* Diesel Button */}
+            {isDieselAllowed ? (
+              <button
+                onClick={() => handleFuelTypeChange("diesel")}
+                className={cn(
+                  "flex flex-1 items-center justify-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition-all",
+                  fuelType === "diesel"
+                    ? "bg-amber-600 text-white ring-2 ring-amber-600 ring-offset-1"
+                    : "bg-white text-slate-600 hover:bg-slate-100"
+                )}
+              >
+                <span className={cn(
+                  "h-2.5 w-2.5 rounded-full",
+                  fuelType === "diesel" ? "bg-white" : "bg-amber-500"
+                )} />
+                <span>Diesel</span>
+                <span className="text-xs opacity-75">${dieselPrice}+RUC</span>
+              </button>
+            ) : (
+              <div className="flex flex-1 cursor-not-allowed items-center justify-center gap-2 rounded-full bg-slate-100 px-3 py-2 text-sm font-medium text-slate-400">
+                <Lock className="h-3.5 w-3.5" />
+                <span>Diesel</span>
+                <span className="text-xs opacity-50">(RUC)</span>
+              </div>
+            )}
+          </div>
+          
+          {fuelType === "diesel" && (
+            <p className="text-xs text-amber-600">
+              Diesel vehicles pay Road User Charges (RUC)
             </p>
-            <div className="relative">
-              <Input
-                type="number"
-                value={value}
-                onChange={(e) => {
-                  onChange(Number(e.target.value));
-                  setIsCustom(true);
-                }}
-                className="h-11 rounded-full border-slate-200 pr-20 text-center text-lg font-semibold"
-                min={3}
-                max={25}
-                step={0.5}
-                autoFocus
-              />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-slate-400">
-                L/100km
-              </span>
-            </div>
+          )}
+        </div>
+      )}
+
+      {/* Custom Input - Only show when in custom mode */}
+      {(showCustomInput || isCustom) && (
+        <div className="space-y-2 rounded-2xl bg-slate-50 p-3">
+          <p className="text-xs font-medium text-slate-500">
+            Enter fuel consumption:
+          </p>
+          <div className="relative">
+            <Input
+              ref={inputRef}
+              type="number"
+              value={value}
+              onChange={(e) => {
+                onChange(Number(e.target.value));
+                setIsCustom(true);
+              }}
+              className="h-11 rounded-full border-slate-200 pr-20 text-center text-lg font-semibold"
+              min={3}
+              max={25}
+              step={0.5}
+            />
+            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-slate-400">
+              L/100km
+            </span>
           </div>
         </div>
-      ) : selectedPreset ? (
+      )}
+
+      {/* Selected Preset Info - Show when preset selected and NOT in custom mode */}
+      {selectedPreset && !isCustom && (
         <div className="flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-3">
           <div>
             <p className="text-xs text-slate-500">{selectedPreset.examples}</p>
@@ -231,7 +288,7 @@ export const VehiclePresetSelector = ({
             {value} L
           </div>
         </div>
-      ) : null}
+      )}
     </div>
   );
 };
