@@ -31,10 +31,14 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet data/fuel-prices.json; then
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-          else
+          git add data/fuel-prices.json
+          if [ -n "$(git diff --cached --name-only)" ]; then
             echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected:"
+            git diff --cached --stat
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
           fi
 
       - name: Commit and push changes
