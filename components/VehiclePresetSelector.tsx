@@ -39,8 +39,8 @@ export const VehiclePresetSelector = ({
   showFuelTypeSelector = false,
   fuelType = "petrol",
   onFuelTypeChange,
-  petrolPrice = 2.65,
-  dieselPrice = 2.1,
+  petrolPrice = 2.53,
+  dieselPrice = 1.88,
   dieselCompatiblePresets = [],
   petrolCompatiblePresets = [],
 }: VehiclePresetSelectorProps) => {

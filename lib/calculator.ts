@@ -4,10 +4,11 @@ import { z } from "zod";
 export type CarFuelType = "petrol" | "diesel" | "hybrid";
 
 // Default NZ fuel and rental data
+// Fuel prices updated from MBIE weekly data (2026-01-16)
 export const DEFAULTS = {
   // Fuel prices (NZD per litre)
-  dieselPrice: 2.1,
-  petrolPrice: 2.65,
+  dieselPrice: 1.88,
+  petrolPrice: 2.53,
 
   // Fuel consumption (L per 100km)
   dieselConsumption: 10, // Typical for campervan
