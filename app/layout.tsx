@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { TallyFeedbackButton } from "@/components/TallyFeedbackButton";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -93,6 +94,10 @@ export default function RootLayout({
         {children}
         <Analytics />
         <SpeedInsights />
+        
+        {/* Feedback Widget - Tally Popup */}
+        <TallyFeedbackButton />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
