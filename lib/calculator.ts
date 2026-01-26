@@ -199,14 +199,17 @@ export const calculateCosts = (input: CalculatorInput): CalculationResult => {
   };
 };
 
-// Format currency
-export const formatCurrency = (value: number): string => {
-  return new Intl.NumberFormat("en-NZ", {
+// Format currency (NZD)
+export const formatCurrency = (value: number, showCode: boolean = false): string => {
+  const formatted = new Intl.NumberFormat("en-NZ", {
     style: "currency",
     currency: "NZD",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(value);
+
+  // Optionally append NZD code for clarity (e.g., "$1,234 NZD")
+  return showCode ? `${formatted} NZD` : formatted;
 };
 
 // Format distance
