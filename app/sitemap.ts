@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://vanmath.vercel.app"; // Update this with your actual domain when live
+  const baseUrl = "https://camperorcar.co.nz"; // Update this with your actual domain when live
 
   return [
     {

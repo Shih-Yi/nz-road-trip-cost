@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://vanmath.vercel.app"; // Update with actual domain
+  const baseUrl = "https://camperorcar.co.nz"; // Update with actual domain
 
   return {
     rules: {

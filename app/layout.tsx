@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "VanMath" }],
   creator: "VanMath",
-  metadataBase: new URL("https://vanmath.vercel.app"),
+  metadataBase: new URL("https://camperorcar.co.nz"),
   alternates: {
     canonical: "/",
   },
@@ -69,7 +69,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "VanMath NZ Fuel Cost Calculator",
-    url: "https://vanmath.vercel.app",
+    url: "https://camperorcar.co.nz",
     description:
       "A free tool to calculate and compare the cost of diesel vs petrol campervan rentals in New Zealand, including Road User Charges (RUC).",
     applicationCategory: "TravelApplication",
