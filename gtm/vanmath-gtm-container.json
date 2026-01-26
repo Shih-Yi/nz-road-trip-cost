@@ -1,0 +1,918 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-01-26 12:00:00",
+  "containerVersion": {
+    "path": "accounts/xxx/containers/xxx/versions/0",
+    "accountId": "xxx",
+    "containerId": "xxx",
+    "containerVersionId": "0",
+    "name": "VanMath Analytics Import",
+    "description": "Analytics events for VanMath NZ Road Trip Calculator",
+    "container": {
+      "path": "accounts/xxx/containers/xxx",
+      "accountId": "xxx",
+      "containerId": "xxx",
+      "name": "VanMath",
+      "publicId": "GTM-XXXXXX",
+      "usageContext": ["WEB"]
+    },
+    "variable": [
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "1",
+        "name": "DLV - category",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "category" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "2",
+        "name": "DLV - label",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "label" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "3",
+        "name": "DLV - value",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "value" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "4",
+        "name": "DLV - input_name",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "input_name" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "5",
+        "name": "DLV - input_value",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "input_value" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "6",
+        "name": "DLV - vehicle_type",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "vehicle_type" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "7",
+        "name": "DLV - vehicle_preset",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "vehicle_preset" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "8",
+        "name": "DLV - fuel_type",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "fuel_type" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "9",
+        "name": "DLV - trip_days",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "trip_days" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "10",
+        "name": "DLV - trip_distance",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "trip_distance" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "11",
+        "name": "DLV - winner",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "winner" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "12",
+        "name": "DLV - total_cost",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "total_cost" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "13",
+        "name": "DLV - savings",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "savings" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "14",
+        "name": "DLV - savings_percent",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "savings_percent" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "15",
+        "name": "DLV - scroll_percent",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "scroll_percent" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "16",
+        "name": "DLV - time_seconds",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "time_seconds" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "17",
+        "name": "DLV - affiliate_destination",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "affiliate_destination" }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "variableId": "18",
+        "name": "DLV - estimated_booking_value",
+        "type": "v",
+        "parameter": [
+          { "type": "INTEGER", "key": "dataLayerVersion", "value": "2" },
+          { "type": "TEMPLATE", "key": "name", "value": "estimated_booking_value" }
+        ]
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "triggerId": "1",
+        "name": "CE - calculator_started",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "calculator_started" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "triggerId": "2",
+        "name": "CE - calculator_completed",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "calculator_completed" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "triggerId": "3",
+        "name": "CE - results_viewed",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "results_viewed" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "triggerId": "4",
+        "name": "CE - cta_clicked",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "cta_clicked" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "triggerId": "5",
+        "name": "CE - input_changed",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "input_changed" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "triggerId": "6",
+        "name": "CE - vehicle_selected",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "vehicle_selected" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "triggerId": "7",
+        "name": "CE - fuel_type_changed",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "fuel_type_changed" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "triggerId": "8",
+        "name": "CE - accommodation_toggled",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "accommodation_toggled" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "triggerId": "9",
+        "name": "CE - winner_revealed",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "winner_revealed" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "triggerId": "10",
+        "name": "CE - affiliate_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "affiliate_click" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "triggerId": "11",
+        "name": "CE - high_value_user",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "high_value_user" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "triggerId": "12",
+        "name": "CE - scroll_depth",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "scroll_depth" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "triggerId": "13",
+        "name": "CE - time_on_calculator",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "time_on_calculator" }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "triggerId": "14",
+        "name": "CE - open_feedback",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
+              { "type": "TEMPLATE", "key": "arg1", "value": "open_feedback" }
+            ]
+          }
+        ]
+      }
+    ],
+    "tag": [
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "tagId": "1",
+        "name": "GA4 - calculator_started",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "sendEcommerceData", "value": "false" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "calculator_started" },
+          { "type": "TAG_REFERENCE", "key": "measurementId", "value": "GA4 Configuration" },
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "category" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - category}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["1"]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "tagId": "2",
+        "name": "GA4 - calculator_completed",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "sendEcommerceData", "value": "false" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "calculator_completed" },
+          { "type": "TAG_REFERENCE", "key": "measurementId", "value": "GA4 Configuration" },
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "category" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - category}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["2"]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "tagId": "3",
+        "name": "GA4 - results_viewed",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "sendEcommerceData", "value": "false" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "results_viewed" },
+          { "type": "TAG_REFERENCE", "key": "measurementId", "value": "GA4 Configuration" },
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "category" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - category}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["3"]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "tagId": "4",
+        "name": "GA4 - cta_clicked (Conversion)",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "sendEcommerceData", "value": "false" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "cta_clicked" },
+          { "type": "TAG_REFERENCE", "key": "measurementId", "value": "GA4 Configuration" },
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "affiliate_destination" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - affiliate_destination}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "winner" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - winner}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["4"]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "tagId": "5",
+        "name": "GA4 - input_changed",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "sendEcommerceData", "value": "false" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "input_changed" },
+          { "type": "TAG_REFERENCE", "key": "measurementId", "value": "GA4 Configuration" },
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "input_name" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - input_name}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "input_value" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - input_value}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "trip_days" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - trip_days}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "trip_distance" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - trip_distance}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["5"]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "tagId": "6",
+        "name": "GA4 - vehicle_selected",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "sendEcommerceData", "value": "false" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "vehicle_selected" },
+          { "type": "TAG_REFERENCE", "key": "measurementId", "value": "GA4 Configuration" },
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "vehicle_type" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - vehicle_type}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "vehicle_preset" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - vehicle_preset}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "value" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - value}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["6"]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "tagId": "7",
+        "name": "GA4 - fuel_type_changed",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "sendEcommerceData", "value": "false" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "fuel_type_changed" },
+          { "type": "TAG_REFERENCE", "key": "measurementId", "value": "GA4 Configuration" },
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "fuel_type" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - fuel_type}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "vehicle_preset" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - vehicle_preset}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["7"]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "tagId": "8",
+        "name": "GA4 - accommodation_toggled",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "sendEcommerceData", "value": "false" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "accommodation_toggled" },
+          { "type": "TAG_REFERENCE", "key": "measurementId", "value": "GA4 Configuration" },
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "label" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - label}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "value" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - value}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["8"]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "tagId": "9",
+        "name": "GA4 - winner_revealed",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "sendEcommerceData", "value": "false" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "winner_revealed" },
+          { "type": "TAG_REFERENCE", "key": "measurementId", "value": "GA4 Configuration" },
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "winner" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - winner}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "total_cost" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - total_cost}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "savings" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - savings}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "savings_percent" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - savings_percent}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "trip_days" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - trip_days}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "trip_distance" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - trip_distance}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["9"]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "tagId": "10",
+        "name": "GA4 - affiliate_click",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "sendEcommerceData", "value": "false" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "affiliate_click" },
+          { "type": "TAG_REFERENCE", "key": "measurementId", "value": "GA4 Configuration" },
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "affiliate_destination" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - affiliate_destination}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "winner" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - winner}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "estimated_booking_value" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - estimated_booking_value}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["10"]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "tagId": "11",
+        "name": "GA4 - high_value_user",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "sendEcommerceData", "value": "false" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "high_value_user" },
+          { "type": "TAG_REFERENCE", "key": "measurementId", "value": "GA4 Configuration" },
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "trip_days" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - trip_days}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "trip_distance" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - trip_distance}}" }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "estimated_booking_value" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - estimated_booking_value}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["11"]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "tagId": "12",
+        "name": "GA4 - scroll_depth",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "sendEcommerceData", "value": "false" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "scroll_depth" },
+          { "type": "TAG_REFERENCE", "key": "measurementId", "value": "GA4 Configuration" },
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "scroll_percent" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - scroll_percent}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["12"]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "tagId": "13",
+        "name": "GA4 - time_on_calculator",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "sendEcommerceData", "value": "false" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "time_on_calculator" },
+          { "type": "TAG_REFERENCE", "key": "measurementId", "value": "GA4 Configuration" },
+          {
+            "type": "LIST",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  { "type": "TEMPLATE", "key": "name", "value": "time_seconds" },
+                  { "type": "TEMPLATE", "key": "value", "value": "{{DLV - time_seconds}}" }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["13"]
+      },
+      {
+        "accountId": "xxx",
+        "containerId": "xxx",
+        "tagId": "14",
+        "name": "GA4 - open_feedback",
+        "type": "gaawe",
+        "parameter": [
+          { "type": "BOOLEAN", "key": "sendEcommerceData", "value": "false" },
+          { "type": "TEMPLATE", "key": "eventName", "value": "open_feedback" },
+          { "type": "TAG_REFERENCE", "key": "measurementId", "value": "GA4 Configuration" }
+        ],
+        "firingTriggerId": ["14"]
+      }
+    ]
+  }
+}
