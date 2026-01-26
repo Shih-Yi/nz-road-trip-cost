@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import {
   Fuel,
   Car,
@@ -11,6 +11,16 @@ import {
   Hotel,
   Truck,
 } from "lucide-react";
+import {
+  trackInputChanged,
+  trackAccommodationToggled,
+  trackWinnerRevealed,
+} from "@/lib/analytics";
+import {
+  useEngagementTracking,
+  useResultsVisibilityTracking,
+  useCalculatorStartTracking,
+} from "@/hooks/useAnalytics";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -52,6 +62,15 @@ const IconWrapper = ({
 );
 
 export const Calculator = () => {
+  // Refs for tracking
+  const resultsRef = useRef<HTMLDivElement>(null);
+  const prevWinnerRef = useRef<string | null>(null);
+
+  // Analytics hooks
+  useEngagementTracking();
+  useResultsVisibilityTracking(resultsRef);
+  const markCalculatorStarted = useCalculatorStartTracking();
+
   // Get latest fuel price date
   const latestDate = useMemo(() => {
     if (!fuelPrices.length) return "Unknown";
@@ -83,11 +102,44 @@ export const Calculator = () => {
 
   const results = useMemo(() => calculateCosts(inputs), [inputs]);
 
+  // Track winner changes
+  useEffect(() => {
+    if (results.winner && results.winner !== prevWinnerRef.current) {
+      prevWinnerRef.current = results.winner;
+      trackWinnerRevealed(
+        results.winner,
+        results.rankings[0].total,
+        results.savings,
+        results.savingsPercent,
+        inputs.days,
+        inputs.distance
+      );
+    }
+  }, [results, inputs.days, inputs.distance]);
+
+  // Debounced input tracking
+  const trackInputDebounced = useCallback((key: string, value: number | string) => {
+    // Simple debounce - only track after 500ms of no changes
+    const timeoutId = setTimeout(() => {
+      trackInputChanged(key, value, inputs.days, inputs.distance);
+    }, 500);
+    return () => clearTimeout(timeoutId);
+  }, [inputs.days, inputs.distance]);
+
   const updateInput = <K extends keyof CalculatorInput>(
     key: K,
     value: CalculatorInput[K]
   ) => {
+    markCalculatorStarted(); // Track first interaction
     setInputs((prev) => ({ ...prev, [key]: value }));
+
+    // Track accommodation toggle specifically
+    if (key === "includeAccommodation") {
+      trackAccommodationToggled(
+        value as boolean,
+        inputs.accommodationPerNight
+      );
+    }
   };
 
   return (
@@ -568,7 +620,9 @@ export const Calculator = () => {
         </div>
 
         {/* Results Dashboard */}
-        <ResultsDashboard results={results} inputs={inputs} />
+        <div ref={resultsRef}>
+          <ResultsDashboard results={results} inputs={inputs} />
+        </div>
 
         <p className="mt-8 text-center text-xs text-slate-400">
           Data Source: Fuel prices are sourced from MBIE Weekly Fuel Price

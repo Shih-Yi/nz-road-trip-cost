@@ -18,6 +18,7 @@ import {
   type CalculationResult,
   type CalculatorInput,
 } from "@/lib/calculator";
+import { trackCTAClicked } from "@/lib/analytics";
 
 interface ResultsDashboardProps {
   results: CalculationResult;
@@ -427,6 +428,15 @@ export const ResultsDashboard = ({
           <Button
             size="lg"
             className="h-14 w-full max-w-md rounded-full bg-orange-500 text-lg font-bold text-white shadow-lg shadow-orange-200 transition-all hover:bg-orange-600 hover:shadow-xl hover:shadow-orange-300"
+            onClick={() => {
+              trackCTAClicked(
+                "rental_comparison",
+                results.winner,
+                rankings[0].total
+              );
+              // TODO: Replace with actual affiliate link
+              // window.open("https://affiliate-link.com", "_blank");
+            }}
           >
             Check {getVehicleLabel(results.winner)} Rates
             <ExternalLink className="ml-2 h-5 w-5" />

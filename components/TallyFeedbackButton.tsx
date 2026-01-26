@@ -2,14 +2,7 @@
 
 import { useEffect } from "react";
 import { MessageCircle } from "lucide-react";
-
-declare global {
-  interface Window {
-    Tally?: {
-      openPopup: (formId: string, options?: Record<string, unknown>) => void;
-    };
-  }
-}
+import { sendEvent } from "@/lib/analytics";
 
 interface TallyFeedbackButtonProps {
   formId?: string;
@@ -35,8 +28,8 @@ export function TallyFeedbackButton({ formId }: TallyFeedbackButtonProps) {
       return;
     }
 
-    // Optional: Add analytics tracking here if needed
-    // sendEvent("ui_interaction", { action: "open_feedback", label: "Tally Popup" });
+    // Track feedback open
+    sendEvent("open_feedback", { category: "Support", label: "Floating Button" });
 
     if (window.Tally) {
       window.Tally.openPopup(tallyFormId, {

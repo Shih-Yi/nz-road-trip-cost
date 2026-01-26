@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { DEFAULTS } from "@/lib/calculator";
+import { sendEvent } from "@/lib/analytics";
 import type { VehiclePreset } from "@/lib/vehicle-presets";
 
 interface VehiclePresetSelectorProps {
@@ -71,6 +72,13 @@ export const VehiclePresetSelector = ({
     onChange(preset.consumption);
     setIsCustom(false);
     setShowCustomInput(false);
+    
+    // Track user preference
+    sendEvent("select_vehicle_preset", {
+      category: "Engagement",
+      label: preset.name,
+      value: preset.consumption
+    });
     
     // Auto-switch fuel type if current one is not allowed for this new preset
     if (onFuelTypeChange) {

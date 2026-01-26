@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { TallyFeedbackButton } from "@/components/TallyFeedbackButton";
 import "./globals.css";
 
@@ -97,6 +98,11 @@ export default function RootLayout({
         
         {/* Feedback Widget - Tally Popup */}
         <TallyFeedbackButton />
+
+        {/* Google Analytics & Tag Manager - Managed via GTM only */}
+        {process.env.NEXT_PUBLIC_GTM_ID && (
+          <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+        )}
 
         <script
           type="application/ld+json"
