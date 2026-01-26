@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Pencil, Check, Fuel, Lock } from "lucide-react";
+import { Pencil, Check, Fuel, Lock, Info } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -25,6 +25,7 @@ interface VehiclePresetSelectorProps {
   onFuelTypeChange?: (type: "petrol" | "diesel") => void;
   petrolPrice?: number;
   dieselPrice?: number;
+  lastUpdated?: string;
   // Preset IDs that can use diesel
   dieselCompatiblePresets?: string[];
   // Preset IDs that can use petrol
@@ -42,6 +43,7 @@ export const VehiclePresetSelector = ({
   onFuelTypeChange,
   petrolPrice = DEFAULTS.petrolPrice,
   dieselPrice = DEFAULTS.dieselPrice,
+  lastUpdated = "2026-01-24",
   dieselCompatiblePresets = [],
   petrolCompatiblePresets = [],
 }: VehiclePresetSelectorProps) => {
@@ -185,6 +187,21 @@ export const VehiclePresetSelector = ({
           <div className="flex items-center gap-2 text-xs font-medium text-slate-500">
             <Fuel className="h-3.5 w-3.5" />
             <span>Fuel Type:</span>
+            <span className="font-normal text-slate-400">
+              (Est. National Avg)
+            </span>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Info className="h-3.5 w-3.5 cursor-help text-slate-400" />
+              </TooltipTrigger>
+              <TooltipContent className="max-w-xs rounded-2xl">
+                <p className="text-sm">
+                  Based on the latest weekly monitoring data from MBIE (Ministry
+                  of Business, Innovation and Employment). Last updated:{" "}
+                  {lastUpdated}.
+                </p>
+              </TooltipContent>
+            </Tooltip>
           </div>
 
           <div className="flex gap-2">

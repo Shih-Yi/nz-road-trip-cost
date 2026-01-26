@@ -27,20 +27,20 @@ export const DEFAULTS = {
   dieselPrice: latestPrices.diesel,
   petrolPrice: latestPrices.petrol,
 
-  // Fuel consumption (L per 100km)
-  dieselConsumption: 10, // Typical for campervan
-  petrolConsumption: 12, // Typical for campervan
-  carConsumption: 7, // Typical for compact car
+  // Fuel consumption (L per 100km) - 2026 Real World Estimates
+  dieselConsumption: 11, // Typical for loaded campervan
+  petrolConsumption: 13, // Typical for loaded campervan
+  carConsumption: 8, // Typical for mixed car usage
 
-  // Daily rental rates (NZD)
-  dieselDailyRate: 150,
-  petrolDailyRate: 120,
-  carDailyRate: 65, // Typical car rental rate
+  // Daily rental rates (NZD) - 2026 Average estimates
+  dieselDailyRate: 180,
+  petrolDailyRate: 140,
+  carDailyRate: 60, // Typical car rental rate
 
   // RUC (Road User Charges) - Diesel only
   rucRate: 0.08, // $0.08/km (rental company rate, higher than govt rate)
   carRucRate: 0.08, // Same rate for diesel cars
-  govtRucRate: 0.076, // Government rate for reference
+  govtRucRate: 0.076, // Government rate for reference (2025/26)
 
   // Trip defaults
   days: 14,
@@ -49,7 +49,7 @@ export const DEFAULTS = {
   // Car rental defaults
   carFuelType: "petrol" as CarFuelType,
   includeAccommodation: true,
-  accommodationPerNight: 120, // Average NZ accommodation cost
+  accommodationPerNight: 180, // Average NZ motel/cabin cost (2026)
 } as const;
 
 // Validation schema

@@ -35,6 +35,7 @@ import {
 } from "@/lib/vehicle-presets";
 import { VehiclePresetSelector } from "./VehiclePresetSelector";
 import { ResultsDashboard } from "./ResultsDashboard";
+import fuelPrices from "@/data/fuel-prices.json";
 
 const IconWrapper = ({
   children,
@@ -51,6 +52,16 @@ const IconWrapper = ({
 );
 
 export const Calculator = () => {
+  // Get latest fuel price date
+  const latestDate = useMemo(() => {
+    if (!fuelPrices.length) return "Unknown";
+    // Sort by date descending to get the most recent one
+    const sorted = [...fuelPrices].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+    return sorted[0].date;
+  }, []);
+
   const [inputs, setInputs] = useState<CalculatorInput>({
     days: DEFAULTS.days,
     distance: DEFAULTS.distance,
@@ -187,10 +198,27 @@ export const Calculator = () => {
 
               {/* Fuel Price */}
               <div className="space-y-2">
-                <Label className="flex items-center gap-2 text-sm font-medium text-slate-600">
-                  <Fuel className="h-4 w-4" />
-                  Diesel Price
-                </Label>
+                <div className="flex items-center gap-2">
+                  <Label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                    <Fuel className="h-4 w-4" />
+                    Diesel Price{" "}
+                    <span className="font-normal text-slate-400">
+                      (Est. National Avg)
+                    </span>
+                  </Label>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Info className="h-4 w-4 cursor-help text-slate-400" />
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs rounded-2xl">
+                      <p className="text-sm">
+                        Based on the latest weekly monitoring data from MBIE
+                        (Ministry of Business, Innovation and Employment). Last
+                        updated: {latestDate}.
+                      </p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
                 <div className="relative">
                   <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
                     $
@@ -300,10 +328,27 @@ export const Calculator = () => {
 
               {/* Fuel Price */}
               <div className="space-y-2">
-                <Label className="flex items-center gap-2 text-sm font-medium text-slate-600">
-                  <Fuel className="h-4 w-4" />
-                  Petrol Price (91)
-                </Label>
+                <div className="flex items-center gap-2">
+                  <Label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                    <Fuel className="h-4 w-4" />
+                    Petrol Price (91){" "}
+                    <span className="font-normal text-slate-400">
+                      (Est. National Avg)
+                    </span>
+                  </Label>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Info className="h-4 w-4 cursor-help text-slate-400" />
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs rounded-2xl">
+                      <p className="text-sm">
+                        Based on the latest weekly monitoring data from MBIE
+                        (Ministry of Business, Innovation and Employment). Last
+                        updated: {latestDate}.
+                      </p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
                 <div className="relative">
                   <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
                     $
@@ -406,6 +451,7 @@ export const Calculator = () => {
                 onFuelTypeChange={(type) => updateInput("carFuelType", type)}
                 petrolPrice={inputs.petrolPrice}
                 dieselPrice={inputs.dieselPrice}
+                lastUpdated={latestDate}
                 dieselCompatiblePresets={["large-suv"]}
                 petrolCompatiblePresets={["economy", "compact-suv", "hybrid"]}
               />
@@ -523,6 +569,12 @@ export const Calculator = () => {
 
         {/* Results Dashboard */}
         <ResultsDashboard results={results} inputs={inputs} />
+
+        <p className="mt-8 text-center text-xs text-slate-400">
+          Data Source: Fuel prices are sourced from MBIE Weekly Fuel Price
+          Monitoring. Vehicle specifications are estimates based on market
+          averages.
+        </p>
       </div>
     </TooltipProvider>
   );
