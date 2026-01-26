@@ -45,7 +45,7 @@ export const CAMPERVAN_PRESETS: VehiclePreset[] = [
   },
   {
     id: "large-rv",
-    name: "Large RV (6 Berth)",
+    name: "Large Motorhome (6 Berth)",
     examples: "Fiat Ducato, Ford Transit",
     fuelType: "diesel",
     consumption: 16,
