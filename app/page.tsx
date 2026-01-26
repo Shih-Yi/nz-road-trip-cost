@@ -64,6 +64,65 @@ export default function Home() {
       {/* Main Calculator Section */}
       <main className="px-4 pb-16 md:px-8">
         <Calculator />
+
+        {/* SEO Content Section - Helps with ranking for long-tail keywords */}
+        <section className="mx-auto mt-20 max-w-4xl space-y-12 px-2 text-slate-700">
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">
+              Understanding New Zealand Road User Charges (RUC)
+            </h2>
+            <p className="leading-relaxed text-slate-600">
+              Unlike many other countries, New Zealand taxes diesel vehicles
+              separately through <strong>Road User Charges (RUC)</strong>. Petrol
+              is taxed at the pump, but diesel is not. If you rent a diesel
+              campervan, you (or your rental company) must pay this tax based on
+              the distance you drive. As of 2026, rental companies typically charge
+              between <strong>$0.08 and $0.09 per kilometer</strong>. This hidden
+              cost can add hundreds of dollars to your trip, often making a
+              seemingly cheaper diesel rental more expensive than a petrol
+              alternative.
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2">
+            <div className="space-y-4">
+              <h2 className="text-xl font-bold text-slate-900 md:text-2xl">
+                Diesel vs Petrol Campervan: Which is Cheaper in 2026?
+              </h2>
+              <p className="leading-relaxed text-slate-600">
+                The answer depends on your total distance. Diesel engines are more
+                fuel-efficient (using ~10-11L/100km vs ~13-14L for petrol), but
+                the RUC fees offset these savings on shorter trips. Generally, if
+                you plan to drive <strong>over 2,500km</strong>, the efficiency
+                of diesel starts to pay off. For shorter trips around the South
+                Island or North Island loops, a petrol Hitop campervan is often the
+                more economical choice. Use our calculator above to run your
+                specific numbers.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <h2 className="text-xl font-bold text-slate-900 md:text-2xl">
+                How to Save Money on Your NZ Road Trip
+              </h2>
+              <ul className="list-inside list-disc space-y-2 leading-relaxed text-slate-600">
+                <li>
+                  <strong>Book Early:</strong> Campervan rates in 2026 fluctuate
+                  wildly. Booking 3-6 months in advance can save up to 30%.
+                </li>
+                <li>
+                  <strong>Check Fuel Apps:</strong> Use apps like Gaspy to find the
+                  cheapest petrol stations nearby. Prices can vary by 20-30 cents
+                  per litre between towns.
+                </li>
+                <li>
+                  <strong>Consider Shoulder Season:</strong> Traveling in March-May
+                  or September-November offers cheaper rental rates and significantly
+                  less traffic on the roads.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Footer */}
