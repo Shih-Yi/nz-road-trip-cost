@@ -189,7 +189,7 @@ export const trackAccommodationToggled = (included: boolean, perNight?: number) 
 
 /**
  * Track when winner is revealed (calculation completed)
- * Only fires ONCE per session - captures the first result shown to user
+ * Only fires ONCE per session, and only AFTER user has started interacting
  */
 export const trackWinnerRevealed = (
   winner: string,
@@ -199,6 +199,9 @@ export const trackWinnerRevealed = (
   tripDays: number,
   tripDistance: number
 ) => {
+  // Only fire after user has interacted (calculator_started must fire first)
+  if (!firedEvents.has('calculator_started')) return;
+
   // Only fire once per session
   if (firedEvents.has('winner_revealed')) return;
 
