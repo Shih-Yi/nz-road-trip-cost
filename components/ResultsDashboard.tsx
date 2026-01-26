@@ -119,7 +119,7 @@ export const ResultsDashboard = ({
             <div className="text-center">
               <p className="text-sm text-emerald-100">Total Cost</p>
               <p className="text-4xl font-extrabold">
-                {formatCurrency(winner.total)}
+                {formatCurrency(winner.total, true)}
               </p>
             </div>
           </div>
@@ -236,6 +236,7 @@ export const ResultsDashboard = ({
                 tickFormatter={(value) => `$${value}`}
                 axisLine={false}
                 tickLine={false}
+                label={{ value: 'NZD', position: 'insideRight', offset: -5, fontSize: 11, fill: '#94a3b8' }}
               />
               <YAxis
                 type="category"
@@ -443,6 +444,9 @@ export const ResultsDashboard = ({
           </Button>
           <p className="text-xs text-slate-400">
             Compare prices from top NZ rental companies
+          </p>
+          <p className="mt-2 text-xs font-medium text-slate-500">
+            All prices shown in NZD (New Zealand Dollars)
           </p>
         </div>
       </CardContent>

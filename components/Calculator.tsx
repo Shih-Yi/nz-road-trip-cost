@@ -226,7 +226,7 @@ export const Calculator = () => {
               {/* Daily Rate */}
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-slate-600">
-                  Daily Rental Rate
+                  Daily Rental Rate <span className="text-slate-400">(NZD)</span>
                 </Label>
                 <div className="relative">
                   <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
@@ -255,7 +255,7 @@ export const Calculator = () => {
                     <Fuel className="h-4 w-4" />
                     Diesel Price{" "}
                     <span className="font-normal text-slate-400">
-                      (Est. National Avg)
+                      (NZD/L)
                     </span>
                   </Label>
                   <Tooltip>
@@ -356,7 +356,7 @@ export const Calculator = () => {
               {/* Daily Rate */}
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-slate-600">
-                  Daily Rental Rate
+                  Daily Rental Rate <span className="text-slate-400">(NZD)</span>
                 </Label>
                 <div className="relative">
                   <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
@@ -383,9 +383,9 @@ export const Calculator = () => {
                 <div className="flex items-center gap-2">
                   <Label className="flex items-center gap-2 text-sm font-medium text-slate-600">
                     <Fuel className="h-4 w-4" />
-                    Petrol Price (91){" "}
+                    Petrol 91{" "}
                     <span className="font-normal text-slate-400">
-                      (Est. National Avg)
+                      (NZD/L)
                     </span>
                   </Label>
                   <Tooltip>
@@ -447,7 +447,7 @@ export const Calculator = () => {
                     </TooltipContent>
                   </Tooltip>
                 </Label>
-                <p className="text-2xl font-bold text-emerald-600">$0.00/km</p>
+                <p className="text-2xl font-bold text-emerald-600">$0.00 NZD/km</p>
                 <p className="text-xs text-emerald-600">
                   Road tax included in fuel
                 </p>
@@ -469,7 +469,7 @@ export const Calculator = () => {
               {/* Daily Rate */}
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-slate-600">
-                  Daily Rental Rate
+                  Daily Rental Rate <span className="text-slate-400">(NZD)</span>
                 </Label>
                 <div className="relative">
                   <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
@@ -611,7 +611,7 @@ export const Calculator = () => {
                 )}
                 <p className="text-xs text-purple-600">
                   {inputs.includeAccommodation
-                    ? `${inputs.days - 1} nights @ $${inputs.accommodationPerNight}/night`
+                    ? `${inputs.days - 1} nights @ $${inputs.accommodationPerNight} NZD/night`
                     : "Not included in comparison"}
                 </p>
               </div>
