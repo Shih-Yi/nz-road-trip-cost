@@ -1,0 +1,366 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2026-01-26 12:00:00",
+  "containerVersion": {
+    "path": "accounts/0/containers/0/versions/0",
+    "accountId": "0",
+    "containerId": "0",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/0/containers/0",
+      "accountId": "0",
+      "containerId": "0",
+      "name": "VanMath",
+      "publicId": "GTM-XXXXXX",
+      "usageContext": ["WEB"]
+    },
+    "variable": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "100",
+        "name": "DLV - winner",
+        "type": "v",
+        "parameter": [
+          {"type": "INTEGER", "key": "dataLayerVersion", "value": "2"},
+          {"type": "TEMPLATE", "key": "name", "value": "winner"}
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "101",
+        "name": "DLV - total_cost",
+        "type": "v",
+        "parameter": [
+          {"type": "INTEGER", "key": "dataLayerVersion", "value": "2"},
+          {"type": "TEMPLATE", "key": "name", "value": "total_cost"}
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "102",
+        "name": "DLV - savings",
+        "type": "v",
+        "parameter": [
+          {"type": "INTEGER", "key": "dataLayerVersion", "value": "2"},
+          {"type": "TEMPLATE", "key": "name", "value": "savings"}
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "103",
+        "name": "DLV - trip_days",
+        "type": "v",
+        "parameter": [
+          {"type": "INTEGER", "key": "dataLayerVersion", "value": "2"},
+          {"type": "TEMPLATE", "key": "name", "value": "trip_days"}
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "104",
+        "name": "DLV - trip_distance",
+        "type": "v",
+        "parameter": [
+          {"type": "INTEGER", "key": "dataLayerVersion", "value": "2"},
+          {"type": "TEMPLATE", "key": "name", "value": "trip_distance"}
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "105",
+        "name": "DLV - affiliate_destination",
+        "type": "v",
+        "parameter": [
+          {"type": "INTEGER", "key": "dataLayerVersion", "value": "2"},
+          {"type": "TEMPLATE", "key": "name", "value": "affiliate_destination"}
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "variableId": "106",
+        "name": "DLV - estimated_booking_value",
+        "type": "v",
+        "parameter": [
+          {"type": "INTEGER", "key": "dataLayerVersion", "value": "2"},
+          {"type": "TEMPLATE", "key": "name", "value": "estimated_booking_value"}
+        ]
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "200",
+        "name": "CE - calculator_started",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {"type": "template", "key": "arg0", "value": "{{_event}}"},
+              {"type": "template", "key": "arg1", "value": "calculator_started"}
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "201",
+        "name": "CE - cta_clicked",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {"type": "template", "key": "arg0", "value": "{{_event}}"},
+              {"type": "template", "key": "arg1", "value": "cta_clicked"}
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "202",
+        "name": "CE - winner_revealed",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {"type": "template", "key": "arg0", "value": "{{_event}}"},
+              {"type": "template", "key": "arg1", "value": "winner_revealed"}
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "203",
+        "name": "CE - high_value_user",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {"type": "template", "key": "arg0", "value": "{{_event}}"},
+              {"type": "template", "key": "arg1", "value": "high_value_user"}
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "204",
+        "name": "CE - affiliate_click",
+        "type": "customEvent",
+        "customEventFilter": [
+          {
+            "type": "equals",
+            "parameter": [
+              {"type": "template", "key": "arg0", "value": "{{_event}}"},
+              {"type": "template", "key": "arg1", "value": "affiliate_click"}
+            ]
+          }
+        ]
+      }
+    ],
+    "tag": [
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "300",
+        "name": "GA4 Event - calculator_started",
+        "type": "gaawe",
+        "parameter": [
+          {"type": "boolean", "key": "sendEcommerceData", "value": "false"},
+          {"type": "boolean", "key": "enhancedUserId", "value": "false"},
+          {"type": "template", "key": "eventName", "value": "calculator_started"},
+          {"type": "template", "key": "measurementIdOverride", "value": ""}
+        ],
+        "firingTriggerId": ["200"]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "301",
+        "name": "GA4 Event - cta_clicked",
+        "type": "gaawe",
+        "parameter": [
+          {"type": "boolean", "key": "sendEcommerceData", "value": "false"},
+          {"type": "boolean", "key": "enhancedUserId", "value": "false"},
+          {"type": "template", "key": "eventName", "value": "cta_clicked"},
+          {"type": "template", "key": "measurementIdOverride", "value": ""},
+          {
+            "type": "list",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "map",
+                "map": [
+                  {"type": "template", "key": "name", "value": "winner"},
+                  {"type": "template", "key": "value", "value": "{{DLV - winner}}"}
+                ]
+              },
+              {
+                "type": "map",
+                "map": [
+                  {"type": "template", "key": "name", "value": "affiliate_destination"},
+                  {"type": "template", "key": "value", "value": "{{DLV - affiliate_destination}}"}
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["201"]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "302",
+        "name": "GA4 Event - winner_revealed",
+        "type": "gaawe",
+        "parameter": [
+          {"type": "boolean", "key": "sendEcommerceData", "value": "false"},
+          {"type": "boolean", "key": "enhancedUserId", "value": "false"},
+          {"type": "template", "key": "eventName", "value": "winner_revealed"},
+          {"type": "template", "key": "measurementIdOverride", "value": ""},
+          {
+            "type": "list",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "map",
+                "map": [
+                  {"type": "template", "key": "name", "value": "winner"},
+                  {"type": "template", "key": "value", "value": "{{DLV - winner}}"}
+                ]
+              },
+              {
+                "type": "map",
+                "map": [
+                  {"type": "template", "key": "name", "value": "total_cost"},
+                  {"type": "template", "key": "value", "value": "{{DLV - total_cost}}"}
+                ]
+              },
+              {
+                "type": "map",
+                "map": [
+                  {"type": "template", "key": "name", "value": "savings"},
+                  {"type": "template", "key": "value", "value": "{{DLV - savings}}"}
+                ]
+              },
+              {
+                "type": "map",
+                "map": [
+                  {"type": "template", "key": "name", "value": "trip_days"},
+                  {"type": "template", "key": "value", "value": "{{DLV - trip_days}}"}
+                ]
+              },
+              {
+                "type": "map",
+                "map": [
+                  {"type": "template", "key": "name", "value": "trip_distance"},
+                  {"type": "template", "key": "value", "value": "{{DLV - trip_distance}}"}
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["202"]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "303",
+        "name": "GA4 Event - high_value_user",
+        "type": "gaawe",
+        "parameter": [
+          {"type": "boolean", "key": "sendEcommerceData", "value": "false"},
+          {"type": "boolean", "key": "enhancedUserId", "value": "false"},
+          {"type": "template", "key": "eventName", "value": "high_value_user"},
+          {"type": "template", "key": "measurementIdOverride", "value": ""},
+          {
+            "type": "list",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "map",
+                "map": [
+                  {"type": "template", "key": "name", "value": "trip_days"},
+                  {"type": "template", "key": "value", "value": "{{DLV - trip_days}}"}
+                ]
+              },
+              {
+                "type": "map",
+                "map": [
+                  {"type": "template", "key": "name", "value": "trip_distance"},
+                  {"type": "template", "key": "value", "value": "{{DLV - trip_distance}}"}
+                ]
+              },
+              {
+                "type": "map",
+                "map": [
+                  {"type": "template", "key": "name", "value": "estimated_booking_value"},
+                  {"type": "template", "key": "value", "value": "{{DLV - estimated_booking_value}}"}
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["203"]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "304",
+        "name": "GA4 Event - affiliate_click",
+        "type": "gaawe",
+        "parameter": [
+          {"type": "boolean", "key": "sendEcommerceData", "value": "false"},
+          {"type": "boolean", "key": "enhancedUserId", "value": "false"},
+          {"type": "template", "key": "eventName", "value": "affiliate_click"},
+          {"type": "template", "key": "measurementIdOverride", "value": ""},
+          {
+            "type": "list",
+            "key": "eventParameters",
+            "list": [
+              {
+                "type": "map",
+                "map": [
+                  {"type": "template", "key": "name", "value": "winner"},
+                  {"type": "template", "key": "value", "value": "{{DLV - winner}}"}
+                ]
+              },
+              {
+                "type": "map",
+                "map": [
+                  {"type": "template", "key": "name", "value": "affiliate_destination"},
+                  {"type": "template", "key": "value", "value": "{{DLV - affiliate_destination}}"}
+                ]
+              },
+              {
+                "type": "map",
+                "map": [
+                  {"type": "template", "key": "name", "value": "estimated_booking_value"},
+                  {"type": "template", "key": "value", "value": "{{DLV - estimated_booking_value}}"}
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": ["204"]
+      }
+    ]
+  }
+}
