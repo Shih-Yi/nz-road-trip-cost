@@ -189,6 +189,7 @@ export const trackAccommodationToggled = (included: boolean, perNight?: number) 
 
 /**
  * Track when winner is revealed (calculation completed)
+ * Only fires ONCE per session - captures the first result shown to user
  */
 export const trackWinnerRevealed = (
   winner: string,
@@ -198,9 +199,12 @@ export const trackWinnerRevealed = (
   tripDays: number,
   tripDistance: number
 ) => {
+  // Only fire once per session
+  if (firedEvents.has('winner_revealed')) return;
+
   sendEventOnce('calculator_completed', { category: 'funnel' });
 
-  sendEvent('winner_revealed', {
+  sendEventOnce('winner_revealed', {
     category: 'business',
     winner,
     total_cost: totalCost,
