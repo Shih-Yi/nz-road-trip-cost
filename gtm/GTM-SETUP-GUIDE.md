@@ -1,182 +1,152 @@
 # VanMath GTM 設定指南
 
-## 快速匯入
+## 事件追蹤總覽
 
-1. 到 GTM > Admin > Import Container
-2. 選擇 `vanmath-gtm-container.json`
-3. 選擇 "Merge" > "Rename conflicting tags"
-4. **重要**: 匯入後需要手動連結你的 GA4 Configuration Tag
+### GA4 內建事件（不需設定）
+- `page_view` - 頁面瀏覽
+- `session_start` - 工作階段開始
+- `scroll` - 滾動深度 (90%)
+- `first_visit` - 首次造訪
+
+### 自訂事件（需要設定）
+
+| 事件 | 用途 | GA4 建議 |
+|------|------|---------|
+| `calculator_started` | 用戶開始互動 | Key Event (微轉換) |
+| `cta_clicked` | 點擊 CTA 按鈕 | Key Event (主轉換) ⭐ |
+| `winner_revealed` | 顯示計算結果 | 業務分析 |
+| `high_value_user` | 高價值用戶 | 建立 Audience |
+| `affiliate_click` | 聯盟連結點擊 | 收益追蹤 |
 
 ---
 
-## 手動設定步驟
+## 快速設定（手動）
 
-如果匯入有問題，可以手動設定：
+### Step 1: 建立 7 個 Data Layer Variables
 
-### Step 1: 建立 Data Layer Variables
-
-在 GTM 中建立以下變數 (Variables > User-Defined Variables > New > Data Layer Variable):
+GTM > Variables > User-Defined Variables > New
 
 | 變數名稱 | Data Layer Variable Name |
 |---------|-------------------------|
-| DLV - category | category |
-| DLV - label | label |
-| DLV - value | value |
-| DLV - input_name | input_name |
-| DLV - input_value | input_value |
-| DLV - vehicle_type | vehicle_type |
-| DLV - vehicle_preset | vehicle_preset |
-| DLV - fuel_type | fuel_type |
-| DLV - trip_days | trip_days |
-| DLV - trip_distance | trip_distance |
 | DLV - winner | winner |
 | DLV - total_cost | total_cost |
 | DLV - savings | savings |
-| DLV - savings_percent | savings_percent |
-| DLV - scroll_percent | scroll_percent |
-| DLV - time_seconds | time_seconds |
+| DLV - trip_days | trip_days |
+| DLV - trip_distance | trip_distance |
 | DLV - affiliate_destination | affiliate_destination |
 | DLV - estimated_booking_value | estimated_booking_value |
 
-### Step 2: 建立 Triggers
+### Step 2: 建立 5 個 Triggers
 
-為每個事件建立 Custom Event Trigger:
+GTM > Triggers > New > Custom Event
 
-| Trigger 名稱 | Event Name |
-|-------------|------------|
-| CE - calculator_started | calculator_started |
-| CE - calculator_completed | calculator_completed |
-| CE - results_viewed | results_viewed |
-| CE - cta_clicked | cta_clicked |
-| CE - input_changed | input_changed |
-| CE - vehicle_selected | vehicle_selected |
-| CE - fuel_type_changed | fuel_type_changed |
-| CE - accommodation_toggled | accommodation_toggled |
-| CE - winner_revealed | winner_revealed |
-| CE - affiliate_click | affiliate_click |
-| CE - high_value_user | high_value_user |
-| CE - scroll_depth | scroll_depth |
-| CE - time_on_calculator | time_on_calculator |
-| CE - open_feedback | open_feedback |
+| Trigger 名稱 | Event name (exactly) |
+|-------------|---------------------|
+| CE - calculator_started | `calculator_started` |
+| CE - cta_clicked | `cta_clicked` |
+| CE - winner_revealed | `winner_revealed` |
+| CE - high_value_user | `high_value_user` |
+| CE - affiliate_click | `affiliate_click` |
 
-### Step 3: 建立 GA4 Event Tags
+### Step 3: 建立 5 個 GA4 Event Tags
 
-為每個事件建立 GA4 Event Tag，連結到你的 GA4 Configuration：
+GTM > Tags > New > Google Analytics: GA4 Event
 
 ---
 
-## 事件詳細說明
-
-### Funnel Events (轉換漏斗)
-
-#### calculator_started
-- **觸發**: 用戶首次與計算器互動
-- **參數**: category
-- **GA4 建議**: 標記為 Key Event (微轉換)
-
-#### calculator_completed
-- **觸發**: 計算結果首次產生
-- **參數**: category
-- **GA4 建議**: 標記為 Key Event
-
-#### results_viewed
-- **觸發**: 結果區塊進入視窗 (30% 可見)
-- **參數**: category
-
-#### cta_clicked ⭐
-- **觸發**: 點擊 "Check Rates" 按鈕
-- **參數**: affiliate_destination, winner
-- **GA4 建議**: 標記為 Key Event (主轉換)
+#### Tag 1: calculator_started
+- **Event Name**: `calculator_started`
+- **Trigger**: CE - calculator_started
+- **Parameters**: (無)
 
 ---
 
-### Behavior Events (行為分析)
-
-#### input_changed
-- **觸發**: 任何輸入值改變
-- **參數**: input_name, input_value, trip_days, trip_distance
-- **用途**: 分析用戶偏好設定
-
-#### vehicle_selected
-- **觸發**: 選擇車型預設
-- **參數**: vehicle_type, vehicle_preset, value
-- **用途**: 熱門車型分析
-
-#### fuel_type_changed
-- **觸發**: 切換燃油類型
-- **參數**: fuel_type, vehicle_preset
-
-#### accommodation_toggled
-- **觸發**: 開關住宿選項
-- **參數**: label (included/excluded), value
+#### Tag 2: cta_clicked ⭐主轉換
+- **Event Name**: `cta_clicked`
+- **Trigger**: CE - cta_clicked
+- **Parameters**:
+  | Name | Value |
+  |------|-------|
+  | winner | {{DLV - winner}} |
+  | affiliate_destination | {{DLV - affiliate_destination}} |
 
 ---
 
-### Business Events (商業價值)
-
-#### winner_revealed
-- **觸發**: 顯示計算結果贏家
-- **參數**: winner, total_cost, savings, savings_percent, trip_days, trip_distance
-- **用途**: 分析哪種車型最常勝出
-
-#### affiliate_click
-- **觸發**: 點擊聯盟連結
-- **參數**: affiliate_destination, winner, estimated_booking_value
-- **用途**: 追蹤聯盟行銷收益
-
-#### high_value_user ⭐
-- **觸發**: 高價值用戶 (14+天 且 2000+km)
-- **參數**: trip_days, trip_distance, estimated_booking_value
-- **GA4 建議**: 建立 Audience 用於再行銷
+#### Tag 3: winner_revealed
+- **Event Name**: `winner_revealed`
+- **Trigger**: CE - winner_revealed
+- **Parameters**:
+  | Name | Value |
+  |------|-------|
+  | winner | {{DLV - winner}} |
+  | total_cost | {{DLV - total_cost}} |
+  | savings | {{DLV - savings}} |
+  | trip_days | {{DLV - trip_days}} |
+  | trip_distance | {{DLV - trip_distance}} |
 
 ---
 
-### Engagement Events (參與度)
-
-#### scroll_depth
-- **觸發**: 滾動到 25%, 50%, 75%, 100%
-- **參數**: scroll_percent
-- **用途**: 廣告位置優化
-
-#### time_on_calculator
-- **觸發**: 停留 30s, 60s, 120s, 300s
-- **參數**: time_seconds
-- **用途**: 用戶黏著度分析
-
-#### open_feedback
-- **觸發**: 點擊回饋按鈕
-- **用途**: 收集用戶意見
+#### Tag 4: high_value_user
+- **Event Name**: `high_value_user`
+- **Trigger**: CE - high_value_user
+- **Parameters**:
+  | Name | Value |
+  |------|-------|
+  | trip_days | {{DLV - trip_days}} |
+  | trip_distance | {{DLV - trip_distance}} |
+  | estimated_booking_value | {{DLV - estimated_booking_value}} |
 
 ---
 
-## GA4 建議設定
+#### Tag 5: affiliate_click
+- **Event Name**: `affiliate_click`
+- **Trigger**: CE - affiliate_click
+- **Parameters**:
+  | Name | Value |
+  |------|-------|
+  | winner | {{DLV - winner}} |
+  | affiliate_destination | {{DLV - affiliate_destination}} |
+  | estimated_booking_value | {{DLV - estimated_booking_value}} |
 
-### Key Events (轉換)
-在 GA4 > Admin > Events 中標記為 Key Event:
-1. `cta_clicked` - 主轉換
-2. `calculator_started` - 微轉換
-3. `high_value_user` - 高價值用戶
+---
 
-### Custom Dimensions
-在 GA4 > Admin > Custom Definitions 建立:
+## GA4 設定
 
-| Dimension Name | Event Parameter | Scope |
+### 標記 Key Events（轉換）
+GA4 > Admin > Events > 找到事件 > 標記為 Key Event
+
+1. `cta_clicked` ⭐ (主要轉換)
+2. `calculator_started` (微轉換)
+
+### 建立 Custom Dimensions
+GA4 > Admin > Custom definitions > Create custom dimension
+
+| Dimension name | Event parameter | Scope |
 |---------------|-----------------|-------|
 | Winner | winner | Event |
-| Vehicle Type | vehicle_type | Event |
 | Trip Days | trip_days | Event |
 | Trip Distance | trip_distance | Event |
 
-### Audiences (再行銷受眾)
-1. **High Value Users**: 觸發 `high_value_user` 的用戶
-2. **Engaged Users**: `time_on_calculator` >= 60s
-3. **CTA Clickers**: 觸發 `cta_clicked` 的用戶
+### 建立 Audience（再行銷）
+GA4 > Admin > Audiences > New audience
+
+**High Value Users:**
+- Condition: Event = `high_value_user`
+- 用途: Google Ads 再行銷
 
 ---
 
 ## Debug 測試
 
-1. 開啟 GTM Preview Mode
-2. 在網站上操作計算器
-3. 檢查 Tag Assistant 是否正確觸發事件
-4. 確認 GA4 DebugView 收到事件
+1. GTM > Preview (開啟預覽模式)
+2. 到網站操作計算器
+3. 確認 Tags 正確觸發
+4. GA4 > Admin > DebugView 檢查事件
+5. 測試完成後 GTM > Submit 發布
+
+---
+
+## 檔案說明
+
+- `vanmath-gtm-minimal.json` - 精簡版 GTM 匯入檔 (5 事件)
+- `vanmath-gtm-container.json` - 完整版 GTM 匯入檔 (14 事件)
