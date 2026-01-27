@@ -249,6 +249,11 @@ export default function Home() {
             Fuel prices and consumption rates are estimates. Always verify with
             your rental company. Prices in NZD.
           </p>
+          <div className="mt-4 flex justify-center gap-4 text-xs text-slate-400">
+            <a href="/privacy-policy" className="hover:text-slate-600 hover:underline">
+              Privacy Policy
+            </a>
+          </div>
         </div>
       </footer>
     </div>
