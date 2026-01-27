@@ -50,6 +50,11 @@ export const metadata: Metadata = {
     "queenstown motorhome hire",
     "wellington camper rental",
     // 🎯 Comparison keywords (比較意圖)
+    "Campervan or Car NZ",
+    "rent a car or campervan new zealand",
+    "car vs campervan new zealand road trip",
+    "hiring a car vs campervan nz",
+    "campervan vs car cost nz",
     "britz vs mighty campers cost",
     "jucy vs spaceships NZ",
     "cheap campervan vs expensive motorhome",

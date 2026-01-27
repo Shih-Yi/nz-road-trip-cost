@@ -125,6 +125,21 @@ export default function Home() {
             </article>
           </div>
 
+          {/* Campervan vs Car Section - New Keyword Target */}
+          <article className="space-y-4">
+            <h3 className="text-xl font-bold text-slate-900 md:text-2xl">
+              Campervan or Car NZ: Which is Best for Your Road Trip?
+            </h3>
+            <p className="leading-relaxed text-slate-600">
+              Deciding between a <strong>campervan or car in NZ</strong> depends on your travel style and budget.
+              <strong>Hiring a car vs campervan NZ</strong> often comes down to accommodation preferences.
+              A car rental is cheaper (from $40/day) and offers better fuel economy (6-8L/100km), but requires
+              booking separate accommodation ($100-$200/night). A campervan combines transport and accommodation,
+              providing flexibility to stay in scenic holiday parks. When calculating <strong>campervan vs car cost NZ</strong>,
+              remember that while campervans have higher fuel and ferry costs, you save significantly on nightly stays.
+            </p>
+          </article>
+
           {/* Popular Routes Section - Long-tail keywords */}
           <article className="space-y-6">
             <h3 className="text-2xl font-bold text-slate-900">
