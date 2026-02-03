@@ -13,7 +13,8 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 24,
+          fontSize: 18,
+          fontWeight: 800,
           background: "linear-gradient(135deg, #F97316 0%, #EA580C 100%)",
           width: "100%",
           height: "100%",
@@ -21,9 +22,10 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           borderRadius: "6px",
+          color: "white",
         }}
       >
-        🚐
+        V
       </div>
     ),
     {

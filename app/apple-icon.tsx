@@ -13,7 +13,8 @@ export default function AppleIcon() {
     (
       <div
         style={{
-          fontSize: 120,
+          fontSize: 100,
+          fontWeight: 800,
           background: "linear-gradient(135deg, #F97316 0%, #EA580C 100%)",
           width: "100%",
           height: "100%",
@@ -21,9 +22,10 @@ export default function AppleIcon() {
           alignItems: "center",
           justifyContent: "center",
           borderRadius: "32px",
+          color: "white",
         }}
       >
-        🚐
+        V
       </div>
     ),
     {
