@@ -96,12 +96,14 @@ export const metadata: Metadata = {
     locale: "en_NZ",
     siteName: "VanMath",
     url: "https://camperorcar.co.nz",
+    // Static image for LINE compatibility (uploaded to public/og-image.PNG)
     images: [
       {
-        url: "/og-image.png",
+        url: "https://camperorcar.co.nz/og-image.PNG",
         width: 1200,
         height: 630,
         alt: "VanMath - NZ Campervan Cost Calculator showing Diesel vs Petrol comparison",
+        type: "image/png",
       },
     ],
   },
@@ -110,7 +112,7 @@ export const metadata: Metadata = {
     title: "Diesel vs Petrol? Calculate Your NZ Campervan Costs",
     description:
       "Free tool: Compare fuel costs + hidden RUC fees for your NZ road trip. Find out which campervan type actually saves money!",
-    images: ["/og-image.png"],
+    images: ["https://camperorcar.co.nz/og-image.PNG"],
     creator: "@vanmath_nz",
   },
   other: {
@@ -166,7 +168,7 @@ export default function RootLayout({
       "Trip distance budgeting",
       "Rental cost breakdown",
     ],
-    screenshot: "https://camperorcar.co.nz/og-image.png",
+    screenshot: "https://camperorcar.co.nz/opengraph-image",
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.8",
