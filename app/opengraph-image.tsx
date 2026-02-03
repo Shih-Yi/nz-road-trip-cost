@@ -79,10 +79,12 @@ export default async function Image() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontSize: "32px",
+                fontSize: "28px",
+                fontWeight: 800,
+                color: "white",
               }}
             >
-              🚐
+              VM
             </div>
             <span
               style={{
@@ -142,7 +144,7 @@ export default async function Image() {
                 color: "#B45309",
               }}
             >
-              ⚠️ RUC Fees Included
+              RUC Fees Included
             </div>
             <div
               style={{
@@ -157,7 +159,7 @@ export default async function Image() {
                 color: "#1D4ED8",
               }}
             >
-              ⛽ 2026 NZ Fuel Prices
+              2026 NZ Fuel Prices
             </div>
             <div
               style={{
@@ -172,7 +174,7 @@ export default async function Image() {
                 color: "#047857",
               }}
             >
-              ✓ 100% Free
+              100% Free
             </div>
           </div>
         </div>
@@ -186,7 +188,7 @@ export default async function Image() {
             fontWeight: 500,
           }}
         >
-          Find the cheapest option for your NZ road trip 🇳🇿
+          Find the cheapest option for your New Zealand road trip
         </p>
       </div>
     ),
