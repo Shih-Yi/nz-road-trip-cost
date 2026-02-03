@@ -91,10 +91,11 @@ export const metadata: Metadata = {
     locale: "en_NZ",
     siteName: "VanMath",
     url: "https://camperorcar.co.nz",
-    // Explicit image URL for platforms like LINE that don't auto-detect dynamic images
+    // Static image for LINE and platforms that don't support dynamic images
+    // Generate with: node scripts/generate-og-image.mjs
     images: [
       {
-        url: "https://camperorcar.co.nz/opengraph-image",
+        url: "https://camperorcar.co.nz/og-image.png",
         width: 1200,
         height: 630,
         alt: "VanMath - NZ Campervan Cost Calculator showing Diesel vs Petrol comparison",
@@ -107,7 +108,7 @@ export const metadata: Metadata = {
     title: "Diesel vs Petrol? Calculate Your NZ Campervan Costs",
     description:
       "Free tool: Compare fuel costs + hidden RUC fees for your NZ road trip. Find out which campervan type actually saves money!",
-    images: ["https://camperorcar.co.nz/opengraph-image"],
+    images: ["https://camperorcar.co.nz/og-image.png"],
     creator: "@vanmath_nz",
   },
   other: {
